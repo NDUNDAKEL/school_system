@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pie Chart Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<canvas id="myPieChart" width="400" height="400"></canvas>
+
+<script>
+    // Data for the pie chart
+    var data = {
+        labels: ['Blue', 'Red', 'Green'],
+        datasets: [{
+            data: [50, 30, 70],
+            backgroundColor: [
+                'blue',
+                'red',
+                'green'
+            ]
+        }]
+    };
+
+    // Get the context of the canvas element we want to select
+    var ctx = document.getElementById('myPieChart').getContext('2d');
+
+    // Create the pie chart
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: data
+    });
+</script>
+
+</body>
+</html>

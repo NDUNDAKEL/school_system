@@ -1,0 +1,144 @@
+*{
+    box-sizing: border-box;
+    
+}
+html,body{
+    margin:0;
+    padding: 0;
+}
+/* html{
+    background-color:#333;
+} */
+body{
+    display: flex;
+    min-height: 100vh;
+   flex-direction: column;
+   /* margin: 8px; */
+   background-color: white;
+   margin-top: 0%;
+   border-left: 2px lightgreen;
+}
+header>p{
+    display: none;
+}
+.menu-toggle {
+    font-size: 24px;
+    cursor: pointer;
+    display: none; /* Initially hide the menu toggle on larger screens */
+}
+main{
+    flex:1 0 auto;
+}
+header{
+    display: flex;
+    background-color: grey;
+    border-left: 1px solid grey;;
+    position: sticky;
+    justify-content: space-between;
+}
+.container{
+    /* border-right: 2px lightgreen; */
+}
+nav{
+ font-size: large;
+display: flex;
+padding: 4px;
+width: 100%;
+height: auto;
+background-color: gray;
+justify-content: space-between;
+border: 1px solid black;
+border-top: none;
+border-left: none;
+border-right: 1px solid white;
+}
+nav>a{
+    color: orange;
+    text-decoration: none;
+}
+header>img{
+    border-top: 1px solid black;
+    background-color: grey;
+    height: 50px;
+}
+nav>a:active{
+color: green;
+}
+.content{
+    color: black;
+}
+
+#links>a{
+text-decoration: none;
+display:block;
+color: white;
+margin-left: 10%;
+padding-top:20px;
+background-color:orange;
+    
+}
+/* .container{
+    border: 2px solid orange;
+    width: 70%;
+    position: static;
+    float: left;
+} */
+#links>a:hover{
+    color:black;
+    
+}
+#links{
+    height: 100%;
+    width:100%;
+    position: static;
+    background-color:orange;
+}
+#scroll{
+    display: none;
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+}
+main>p{
+    float: right;
+    color: black;
+}
+.logo{
+    height: 50px;
+    border: 3px;
+    color: gray;
+}
+footer{
+   
+    margin-bottom: 0%;
+    padding: 0%;
+    /* position:sticky; */
+    align-items: center;
+    color: white;
+    background-color: grey;
+
+}
+footer>center>h2>span{
+    font-weight: bolder;
+    color: black;
+}
+footer>center>h1{
+  color: blue;
+}
+.container{
+    overflow: scroll;
+    width: auto;
+  height: auto;
+}
+#newsText{
+    height: auto;
+    width: 50%;
+    color: blue;
+    overflow: scroll;
+}
+/* .contents{
+    color: green;
+} */

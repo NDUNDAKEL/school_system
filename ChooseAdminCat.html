@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin-top: 15%;
+    }
+    .form{
+        display: inline-block;
+        height: auto;
+        margin: 6%;
+        padding: 10px; 
+        background-color:green;
+        border-radius: 7px;
+    }
+    footer{
+        color:blue;
+        margin: 0%;
+        height: auto;
+    }
+    button{
+        background: black;
+        font-weight: bolder;
+        color: white;
+        border-radius: 5px;
+        width:50px;
+        height: 30px;
+        border: none;
+        cursor: pointer;
+        margin:20px
+       
+    }
+    label{
+        color: blue;
+    }
+    input{
+        width: 100%;
+        background-color: white;
+        border-radius: 5px;
+        border: none;
+        height: 30px;
+    }
+    p{
+        cursor: pointer;
+    }
+    .container{
+        background-color: aliceblue;
+    }
+    a{
+        height: auto;
+        width: auto;
+        background-color:blue;
+        color:white;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+    }
+    .choose{
+        display:inline-block;
+    }
+    .form-updater{
+    background-color: red;
+    display: inline-block;
+    height: auto;
+    margin: 6%;
+    padding: 10px; 
+    border-radius: 7px;
+    }
+    .form-main{
+        background-color: blue;
+        display: inline-block;
+        height: auto;
+        margin: 6%;
+        padding: 10px; 
+        border-radius: 7px;
+        }
+        .form-main>label{
+            color: white;
+        }
+    </style>
+</style>
+<body>
+    <center>
+        <div class="message">
+            <h1 style="color: blue;">Makueni Boys High School</h1>
+            <h1 style="color: orange;">Choose your Admin Category to Login</h1>
+        </div>
+        <div class="choose">
+            <p onclick="Teacher()" style="color: green;">Login as Teacher</p>
+            <p onclick="updater()" style="color: red;">Login as Updater</p>
+            <p onclick="Main()" style="color: blue;">Login as Main</p>
+        </div>
+    </center>
+    <div id="teacher">
+        <center>
+        <div class="form">
+        <form action="Post" method="">
+            <img src="makuenilogo.png" alt="school logo"><br>
+            <label for="schoolID">Teacher ID</label>
+            <input required type="text" name="schoolID" placeholder="Enter your Teacher ID"><br>
+            <label for="schoolID">Enter your password</label>
+            <input required type="password" name="schoolID" placeholder="Enter password" ><br>
+            <button type="submit">Login</button>
+        </form>
+        </center>
+    </div>
+</div>
+    <div id="Updater">
+        <center>
+        <div class="form-updater">
+        <form action="Post" method="">
+            <img src="makuenilogo.png" alt="school logo"><br>
+            <label for="schoolID">Updater ID</label>
+            <input required type="text" name="schoolID" placeholder="Enter your Updater ID"><br>
+            <label for="schoolID">Enter your password</label>
+            <input required type="password" name="schoolID" placeholder="Enter password" ><br>
+            <button type="submit">Login</button>
+        </form>
+        </center>
+    </div>
+</div>
+    <div id="main">
+        <center>
+        <div class="form-main">
+        <form action="Post" method="">
+            <img src="makuenilogo.png" alt="school logo"><br>
+            <label for="schoolID">Main ID</label>
+            <input required type="text" name="schoolID" placeholder="Enter your Main ID"><br>
+            <label for="schoolID">Enter your password</label>
+            <input required type="password" name="schoolID" placeholder="Enter password"><br>
+            <button type="submit">Login</button>
+        </form>
+        </center>
+    </div>
+</div>
+<footer>
+    <center>
+        <h2 style="color:green;"><span>Like a tree knowledge grows</span></h2>
+        <p>Powered by School Space &copy 2024</p>
+    </center>
+    </footer>
+    <script>
+        const body=document.querySelector('body')
+        const teacher=document.getElementById('teacher')
+        teacher.style.display='none'
+        const Updater=document.getElementById('Updater')
+        Updater.style.display='none'
+        const main=document.getElementById('main')
+        main.style.display='none'
+
+        function Teacher(){
+            teacher.style.display='block'
+            main.style.display='none'
+            Updater.style.display='none'
+            body.style.marginTop=0;
+        }
+        function Main(){
+            teacher.style.display='none'
+            main.style.display='block'
+            Updater.style.display='none'
+            body.style.marginTop=0;
+        }
+     function updater(){
+            teacher.style.display='none'
+            main.style.display='none'
+            Updater.style.display='block'
+            body.style.marginTop=0;
+        } 
+    </script>
+</body>
+</html>

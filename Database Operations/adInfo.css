@@ -1,0 +1,92 @@
+*{
+    box-sizing: border-box;
+}
+html,body{
+    margin: 10;
+    padding: 10;
+    background-color:whitesmoke;
+    
+}
+body{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    border-right: 2px solid gold;
+    border-left: 2px solid gold;
+}
+main{
+    flex: 1 0 auto;
+}
+header{
+    display:flex;
+    background-color: orange;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    color: white;
+}
+#logo1,#logo{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+footer{
+    background-color:orange;
+    color: white;
+}
+.left-nav{
+  display:flex;
+  justify-content: space-between;
+  background-color:lightgreen;
+  width: auto;
+  height: 100%;
+}
+.left-nav>a{
+    text-decoration: none;
+    width: auto;
+    color:black;
+
+}
+.dd{
+    position:relative;
+    display: inline-block;
+}
+.dd-btn{
+    padding:15px;
+    text-align:center;
+    background:lightgreen;
+    border:none;
+    width: 300px;
+    color: black;
+}
+dd-btn:hover{
+    color:red;
+}
+.dd-content{
+    position: absolute;
+    width:100%;
+    box-shadow: 0 18px 36px rgba(0,0,0,0.30),0 14px 11px rgba(0,0,0,0.2);
+    height: 0px;
+    transition: height 1s;
+    overflow: scroll;
+}
+.dd:hover>.dd-content{
+    height:150px
+}
+.dd-content>a{
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    background-color: orange;
+    color: white;
+  
+}
+.dd-content>a:hover{
+    background-color: black;
+    color: white;
+}
+.container{
+
+    color:white;
+    height:789px;
+    width:100%;
+}

@@ -1,0 +1,169 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:pink;
+    
+
+}
+
+.header {
+    background-color:blue;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.nav {
+    background-color: #333;
+    color:red;
+    text-align: center;
+    padding: 10px;
+}
+
+.nav img {
+    max-width: 100%;
+    height: auto;
+}
+
+.nav li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.content {
+    text-align: center;
+    margin: 0%;
+    padding: 0%;
+    background-color: pink;
+   width: 100%;
+   box-sizing: border-box;
+ 
+   
+
+}
+
+#btnstudent{
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    text-align: center;
+    margin-top:4px;
+    cursor:pointer;
+}
+#btnteacher{
+    border-radius: 5px;
+    background-color: green;
+    color: white;
+    text-align: center;
+    margin-top:4px;
+    cursor:pointer;
+}#btnparent{
+    border-radius: 5px;
+    background-color: gray;
+    color: white;
+    text-align: center;
+    margin-top:4px;
+    cursor:pointer;
+}
+#btnadmin{
+    border-radius: 5px;
+    background-color:red;
+    color: white;
+    text-align: center;
+    margin-top:4px;
+    cursor:pointer;
+}
+h1 {
+    font-size: 32px;
+}
+
+
+p {
+    font-size: 18px;
+}
+
+a {
+    text-decoration: none;
+    color:white;
+    text-align: center;
+
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center; 
+    
+    width: 100%;
+    padding: 10px;
+
+}/* Style for login boxes */
+.login-box {
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-box h1 {
+    margin: 0 0 20px 0;
+    color: #007BFF;
+}
+.login-box label{
+    color:green;
+}
+.login-box label, .login-box input {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.login-box input[type="text"], .login-box input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.login-box input[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-box a {
+    text-decoration: none;
+    color: green;
+    display: block;
+    margin-top: 10px;
+}
+.header>h1>span{
+    color: green;
+}
+.footer-links{
+    color: green;
+    padding: 20px;
+
+}
+.footer-links:hover{
+    color: white;
+    font-size: large;
+}
+@media (max-width: 768px) {
+    .content,footer {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .login-box {
+        width: 80%;
+    }
+}

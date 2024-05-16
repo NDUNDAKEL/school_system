@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilinyaa Secondary School</title>
+    <link rel="stylesheet" type="text/css" href="schoolHome.css">
+</head>
+<script src="school.js"></script>
+<body>
+    <div class="header">
+        <marquee width="60%" direction="left" height="100px">
+            <h1>Makueni Boys School exam system. Login to the system to access academic information.<span> Like a tree, knowledge grows</span></h1>
+        </marquee>
+    </div>
+    <div class="nav">
+        <img src="makuenilogo.png" alt="School Logo">
+        <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#" onclick="showLogin('student')">STUDENTS</a></li>
+            <li><a href="#" onclick="showLogin('teacher')">TEACHERS</a></li>
+            <li><a href="#" onclick="showLogin('parent')">PARENTS</a></li>
+            <li><a href="aboutUs.html">OUR SCHOOL</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Makueni Boys Secondary School</h1>
+        <p><span>Motto:</span> Like A Tree Knowledge grows</p>
+        <div>Login</div>
+        <h1>Login as</h1>
+        <p>Student <button onclick="showLogin('student')" id="btnstudent"><a href="#" >Student Login</a></p></button>
+        <p>Parent  <button  onclick="showLogin('parent')" id="btnparent"><a href="#">Parent Login</a></p></button>
+        <p>Teacher  <button onclick="showLogin('teacher')" id="btnteacher"><a href="#" >Teacher Login</a></p></button>
+        <p>Admin  <button onclick="showLogin('admin')" id="btnadmin" ><a href="#" >Admin Login</a></p></button>
+    </div>
+
+    <div class="login-box" id="student-login">
+        <!-- Student login box (initially hidden) -->
+        <center> 
+        <h1>Student Login</h1>
+         <img src="makuenilogo.png" height="50%" width="auto"> </center>
+        <form action="student-login.php" method="post">
+            <label for="student_number">Student Number:</label>
+            <input type="text" id="student_number" name="student_number" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Log In">
+        </form>
+        <a href="#" onclick="goBack()">Back</a>
+    </div>
+
+    <div class="login-box" id="parent-login">
+        <!-- Parent login box (initially hidden) -->
+        <center> 
+            <h1>Parent Login</h1>
+             <img src="makuenilogo.png" height="50%" width="auto"> </center>
+        <form action="parent-login.php" method="post">
+            <label for="parent_number">Parent Number:</label>
+            <input type="text" id="parent_number" name="parent_number" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Log In">
+        </form>
+        <a href="#" onclick="goBack()">Back</a>
+    </div>
+
+    <div class="login-box" id="teacher-login">
+        <!-- Teacher login box (initially hidden) -->
+        <center> 
+            <h1>Teacher Login</h1>
+             <img src="makuenilogo.png" height="50%" width="auto"> </center>
+        <form action="teacher-login.php" method="post">
+            <label for="teacher_number">Teacher Number:</label>
+            <input type="text" id="teacher_number" name="teacher_number" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Log In">
+        </form>
+        <a href="#" onclick="goBack()">Back</a>
+    </div>
+
+    <div class="login-box" id="admin-login">
+        <!-- Teacher login box (initially hidden) -->
+        <center> 
+            <h1>Admin Login</h1>
+             <img src="makuenilogo.png" height="50%" width="auto"> </center>
+        <form action="teacher-login.php" method="post">
+            <label for="teacher_number">Adm Number:</label>
+            <input type="text" id="teacher_number" name="teacher_number" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Log In">
+        </form>
+        <a href="#" onclick="goBack()">Back</a>
+    </div>
+<footer>
+        <h3> Kilinyaa Secondary School</h3>
+        <p>KEliFE &copy; 2023<span>Making lives easier</span></p>
+         <center>
+             <table>
+                <tr>
+                     <td> <a class="footer-links" href="aboutUs.html">About us  </a>  </td>
+                     <td>  <a class="footer-links"  href="#">Contact us </a>  </td>
+                     </tr>
+                     <tr></tr>
+                     <td></td>
+                     <td></td>
+                     <tr>
+                     <td>  <a class="footer-links" href="#">Our Activities</a>    </td>
+                     <td>  <a class="footer-links" href="#"> School News  </a>    </td>
+                 
+                 </tr>
+             </table>
+         </center>
+        
+         
+     
+     </footer>
+</body>
+
+</html>

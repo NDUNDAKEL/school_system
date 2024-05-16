@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+</head>
+</head>
+<style>
+    body{
+        background-color: aliceblue;
+        margin: 0%;
+    }
+    .form{
+        display: inline-block;
+        height: auto;
+        margin: 6%;
+        padding: 10px; 
+        background-color: lightgray;
+        border-radius: 7px;
+    }
+    footer{
+        color:blue;
+        margin: 0%;
+        height: auto;
+    }
+    button{
+        background: orange;
+        font-weight: bolder;
+        color: white;
+        border-radius: 5px;
+        width:auto;
+        height: auto;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        margin:20px
+       
+    }
+    label{
+        color: blue;
+    }
+    input{
+        width: 100%;
+        background-color: aquamarine;
+        border-radius: 5px;
+        border: none;
+        height: 30px;
+    }
+    p{
+        cursor: pointer;
+    }
+    a{
+        height: auto;
+        width: auto;
+        background-color:orange;
+        color:white;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+    }
+    marquee{
+        background-color: gray;
+        height: auto;
+        margin-top: 0px;
+        color: white;
+   
+    
+    }
+
+   
+</style>
+<body>
+    <marquee direction="left" height="100px">
+        <h1>Makueni Boys Students Registration Page.<span> Only school Students should register to the system. Registration will be validated by admins and Only students should Register!</span></h1>
+    </marquee>
+    <a href="aboutUs.html">Back to School Page</a>
+    <center>
+        <div class="container">
+    <div class="form">
+    <form action="signUp.php" method="POST">
+        <img src="makuenilogo.png" alt="school logo"><br>
+        <label for="student_ID">Enter your school ID</label>
+        <input required type="number" name="schoolID" placeholder="Enter your school ID"><br>
+        <label for="student_name">Enter your Full name</label>
+        <input required type="text" name="fullname" placeholder="Enter your name"><br>
+        <label for="Student_Email">Register your Email your Email</label>
+        <input required type="email" name="email" placeholder="Email"><br>
+        <label for="Student Class">Enter the Form you are</label>
+        <input type="text" name="class" placeholder="Enter your Class"><br>
+        <label for="Student dormitory">Enter the dormitory you were chose to</label>
+        <input type="text" name="dormitory" placeholder="Enter your Dormitory name"><br>
+        <label for="DOB">Choose your Date of Birth</label>
+        <input required type="date" name="DOB" placeholder="Choose your Date of Birth"><br>
+        <label for="Parent_name">Parent/Guardian name</label>
+        <input required type="text" name="parentName" placeholder="Parent/Guardian name"><br>
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+        <label for="Parent's Email">Enter parent's or guardian's Email</label>
+        <input type="email" name="parentEmail" placeholder="parent Email"><br>
+        <label for="Parents Phone Number">Enter parent's or guardian's Phone Number</label>
+        <input type="number" name="parentPhone" placeholder="Parent/Guardian phone Number"><br>
+        <label for="Parent's Adress">Enter parent's or guardian's Adress</label>
+        <input type="text" name="parentAddress" placeholder="Enter Parents/Guardian's Adress"><br>
+        <label for="Student joining year">Enter the date you joined Makueni School</label>
+        <input type="date" name="joiningdate" placeholder="Enter the date you joined Makueni Boys"><br>
+        <label for="Student Password">Enter a strong password for your portal</label>
+        <input type="password" name="studentPassword" placeholder="Enter a strong password for your account studeny"><br>
+        <!-- <label for="Student Password">Confirm your password student</label>
+        <input type="password" name="student_confirm" placeholder="Confirm your student Password"><br> -->
+        <label for="Parent Password">Enter a strong password to access your son's Account</label>
+        <input type="password" name="parentPassword" placeholder="Enter a strong password to access your son's account"/><br>
+        <!-- <label for="Parent Password">Confirm your password parent</label>
+        <i class="fa fa-eye" aria-hidden="true"></i>
+        <input type="password" name="parent_confirm"  placeholder=" a strong password to access your son's account"/><br> -->
+        <button type="submit">Register As A Student</button>
+
+    </form>
+    </div>
+</center>
+<footer>
+    <center>
+        <h2 style="color:green;"><span>Like a tree knowledge grows</span></h2>
+        <p>Powered by School Space &copy 2024</p>
+    </center>
+    </footer>
+</div>
+
+<script>
+    function forgotPassword(){
+       const alerts= alert('changed password')
+       alerts.style.height='40px'
+       alerts.style.backgroundColor='yellow'
+       return alerts;
+    }
+</script>
+</body>
+</html>
