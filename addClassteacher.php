@@ -7,9 +7,14 @@ include("Database Operations/connect.php");
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 // $message = ""; // Initialize message variable
-$teacher_id = filter_input(INPUT_POST, 'teacher_id', FILTER_SANITIZE_SPECIAL_CHARS);
+$teacher_id = filter_input(INPUT_POST, 'teacher', FILTER_SANITIZE_SPECIAL_CHARS);
 $classroom = $_POST['classroom'];
 $query = "SELECT * FROM teacher WHERE teacher_id = '$teacher_id'";
+$query1 = "SELECT * FROM class_teachers WHERE classteacher_id = '$teacher_id'";
+$result1 = mysqli_query($conn, $query1);
+if($result){
+    echo "<script> alert('Teacher ID already registered as a classteacher')</script>";
+}else{
 $result = mysqli_query($conn, $query);
 if(mysqli_fetch_assoc($result)>0){
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -26,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }else{
     echo "<script> alert('Class teacher ID not found. You have to be a registered teacher to have a classteacher account')</script>";
+}
 }
 ?>
 
@@ -118,8 +124,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form">
                 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                     <img  style="border-radius:9px;"src="makuenilogo.png" alt="school logo"><br>
-                    <label for="teacher_id">Enter Teacher ID</label>
-                    <input required type="text" name="teacher_id" placeholder="Enter Teacher ID"><br>
+                    </select><br>
+        
+        <!-- Dormitory Selection -->
+        <label for="teacher-id"style="color:white;" >Select Teacher ID</label><br>
+        <select id="teacher" name="teacher">
+        <?php  
+          $query_teacher = "SELECT * FROM teacher";
+          $result_teacher= mysqli_query($conn, $query_teacher);     
+while ($row_teacher = mysqli_fetch_assoc($result_teacher)) {
+    echo "<option value='" . $row_teacher['teacher_id'] . "'>" . $row_teacher['teacher_id'] . "</option>";
+}
+            ?>
+        </select><br>
                     <label for="classroom">Select Class</label><br>
                     <select id="classroom" name="classroom">
         <?php  

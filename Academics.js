@@ -427,3 +427,20 @@ const content=document.getElementById('content');
      }, 1000); // You can adjust the delay as needed
    }
  };
+ //emoji code
+//  <script src="https://cdn.jsdelivr.net/npm/emoji-button@4.6.1/dist/emoji-button.min.js"></script>
+//  document.addEventListener('DOMContentLoaded',()=>{
+//    const buttonEmoji=document.createElement('button');
+//    buttonEmoji.type='button';
+//    buttonEmoji.textContent='😃';
+//    buttonEmoji.style.marginLeft='10px';
+//    document.getElementById('formemoji').insertBefore(buttonEmoji,document.getElementById('formemoji').childNodes[2]);
+//    const picker=new EmojiButton();
+//    button.addEventListener('click',()=>{
+//       picker.togglePicker('button')
+//    })
+//    picker.on('emoji',emoji=>{
+//       const commentBox=document.getElementById('comment');
+//       commentBox.value +=emoji;
+//    })
+//  })

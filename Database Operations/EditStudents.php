@@ -5,42 +5,35 @@ $filter = $_POST['filter'] ?? 'All';
 $search = $_POST['search'] ?? '';
 $term = filter_input(INPUT_POST, 'term', FILTER_SANITIZE_SPECIAL_CHARS);
 
-if (isset($_GET['editSubject'])) {
+if (isset($_GET['editStudent'])) {
     session_start();
-    $_SESSION['subject_edit'] = $_GET['editSubject'];
-    header('Location: editSubjects_info.php');
+    $_SESSION['id_to_edit'] = $_GET['editStudent'];
+    header('Location:EditstudentInfo.php');
     exit();
-} elseif (isset($_GET['deleteSubject'])) {
+} elseif (isset($_GET['deleteStudent'])) {
     session_start();
-    $id_to_delete = $_GET['deleteSubject'];
-    $queryS = "DELETE FROM subjects WHERE subject_id = '$id_to_delete'";
-    $resultS = mysqli_query($conn, $queryS);
-    if ($resultS) {
-        echo "<script>alert('Subject Deleted successfully!');</script>";
-        // Destroy the session
-        session_unset();
-        session_destroy();
-        header('location: editSubjects.php');
-        exit();
-    } else {
-        echo "<script>alert('Error deleting Subject');</script>";
-    }
+    $_SESSION['id_to_delete'] = $_GET['deleteStudent'];
+    header('Location: deleted_students.php');
 }
 
-// Fetch subject data from the database
-$query = "SELECT * FROM subjects";
-
-if (!empty($search) && !empty($term)) {
-    if ($filter != 'All') {
-        $query .= " WHERE $filter = '$term'";
+// Fetch student data from the database
+if(isset($_POST['search'])){
+    $filter = $_POST['filter'];
+    $term = $_POST['term'];
+    
+    // Handle the "All" case separately
+    if ($filter === 'All') {
+        $query9 = "SELECT * FROM student";
+    } elseif ($filter && $term) {
+        // Construct the query normally for other filter options
+        $query9 = "SELECT * FROM student WHERE $filter = '$term'";
     }
-} elseif ($filter == 'All' && !empty($search)) {
-    // If the filter is 'All' and there's a search term
-    $query .= " WHERE name LIKE '%$search%' OR subject_id LIKE '%$search%' OR teacher_id LIKE '%$search%' OR form_doing LIKE '%$search%' OR term_done LIKE '%$search%'";
+    $result9 = mysqli_query($conn, $query9);
+} else {
+    // If search not performed, fetch all students
+    $query9 = "SELECT * FROM student";
+    $result9 = mysqli_query($conn, $query9);
 }
-
-$result = mysqli_query($conn, $query);
-
 ?>
 
 <!DOCTYPE html>
@@ -48,12 +41,12 @@ $result = mysqli_query($conn, $query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subject Management</title>
+    <title>Student Management</title>
     <style>
         /* Consolidated styles */
         table {
             border-collapse: collapse;
-            width: 70%;
+            width: auto;
             margin: 10% auto;
         }
 
@@ -105,59 +98,69 @@ $result = mysqli_query($conn, $query);
     </style>
 </head>
 <body>
-    <h1 style='color:red'>Subject Management</h1>
-    <form method='POST' action='<?php $_SERVER['PHP_SELF']; ?>'>
-    <div id="search-bar">
-        <label for="search-input">Search by:</label>
-        <input name='term' type="text" id="search-input" placeholder="Enter search term">
-        <select name='filter' id="filter-select">
-            <option value="All">All subjects</option>
-            <option value="subject_id">Subject Code</option>
-            <option value="name">Subject Name</option>
-            <option value="teacher_id">Teacher ID</option>
-            <option value="term_done">Term done</option>
-            <!-- Add more options here if needed -->
+    <h1 style='color:red'>Student Management</h1>
+    <form method="post" action="EditStudents.php">
+        <p style="color: blue;">Based on:</p>
+        <select class="filter-select" name="filter">
+            <option value="All">All</option>
+            <option value="student_id">Student ID</option>
+            <option value="email">Email ID</option>
+            <option value="name">Name</option>
+            <option value="indexnumber">Index Number</option>
+            <option value="classroom_id">Classroom Id</option>
+            <option value="form">Form</option>
         </select>
-        <button type="submit" name="search">Search</button>
-    </div>
+        <input class="search-input" type="text" name="term" placeholder="Enter search term">
+        <button class="search-btn" type="submit" name="search">Search</button>
     </form>
     <table>
         <thead>
             <tr>
-                <th>Subject Code</th>
-                <th>Name</th>
-                <th>Teacher ID</th>
-                <th>Form doing the Subject</th>
-                <th>Term subject is done</th>
-                <th>Action</th>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Student Email</th>
+                <th>Gender</th>
+                <th>KCPE Index Number</th>
+                <th>Classroom ID</th>
+                <th>Form</th>
+                <th>Date Admitted</th>
+                <th>DOB</th>
+                <th>Dormitory</th>
+                <th>Student Token</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
+            if (mysqli_num_rows($result9) > 0) {
+                while ($row9 = mysqli_fetch_assoc($result9)) {
                     echo "<tr>";
-                    echo "<td style='color:orange;'>" . $row['subject_id'] . "</td>";
-                    echo "<td>" . $row['name'] . "</td>";
-                    echo "<td style='color:green;'>" . $row['teacher_id'] . "</td>";
-                    echo "<td style='color:green;'>" . $row['form_doing'] . "</td>";
-                    echo "<td style='color:green;'>" . $row['term_done'] . "</td>";
+                    echo "<td style='color:orange;'>" . $row9['student_id'] . "</td>";
+                    echo "<td>" . $row9['name'] . "</td>";
+                    echo "<td style='color:blue;'>" . $row9['email'] . "</td>";
+                    echo "<td style='color:green;'>" . $row9['gender'] . "</td>";
+                    echo "<td style='color:black;'>" . $row9['indexnumber'] . "</td>";
+                    echo "<td style='color:orange;'>" . $row9['classroom_id'] . "</td>";
+                    echo "<td style='color:red;'>" . $row9['form'] . "</td>";
+                    echo "<td style='color:grey;'>" . $row9['date_admitted'] . "</td>";
+                    echo "<td style='color:blue;'>" . $row9['DOB'] . "</td>";
+                    echo "<td style='color:black;'>" . $row9['dormitory'] . "</td>";
+                    echo "<td style='color:green;'>" . $row9['token'] . "</td>";
                     echo "<td>";
-                    echo "<a style='background-color:yellow; color:black;' href='?editSubject=" . $row['subject_id'] . "'>Edit</a> | ";
-                    echo "<a style='background-color:red; color:white;' href='?deleteSubject=" . $row['subject_id'] . "' onclick='return confirm(\"Are you sure you want to delete this subject?\")'>Delete</a>";
+                    echo "<a style='background-color:yellow; color:black;' href='?editStudent=" . $row9['student_id'] . "'>Edit</a> | ";
+                    echo "<a style='background-color:red; color:white;' href='?deleteStudent=" . $row9['student_id'] . "' onclick='return confirm(\"Are you sure you want to delete this student?\")'>Delete</a>";
                     echo "</td>";
                     echo "</tr>";
                 }
             } else {
-                echo "<tr style='color:red;'><td colspan='4'>No subjects found.</td></tr>";
+                echo "<tr style='color:red;'><td colspan='12'>No students found.</td></tr>";
             }
-            mysqli_close($conn);
             ?>
         </tbody>
     </table>
-    <button id="add" onclick="window.location.href='subjects.php'">Add New Subject</button>
+    <button id="add" onclick="window.location.href='student.php'">Add New Student</button>
     <footer>
-        <p style="color: blue;">Makueni Boys Admin Panel - Edit Subjects</p>
+        <p style="color: blue;">Makueni Boys Admin Panel - Edit Students</p>
         <p style="color: orange;">&copy KEliFE 2024</p>
     </footer>
 </body>

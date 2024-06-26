@@ -5,7 +5,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Include database connection
+// Initialize variables
+$messageR = '';  // Variable to hold message for no subjects
 
 // Get student data
 $student_id = $_SESSION['schoolID'];
@@ -15,19 +16,23 @@ $result_student = mysqli_query($conn, $sql_student);
 if ($result_student && mysqli_num_rows($result_student) > 0) {
     $row = mysqli_fetch_assoc($result_student);
 
+    // Extract the classroom_id from the session and determine the form
+    $classroom_id = $row['classroom_id'];
+    $form_number = intval($classroom_id); // Extracts the leading numeric part
+
     // Handle AJAX request
-    if(isset($_POST['addSubject'])){
+    if (isset($_POST['addSubject'])) {
         $subjectID = $_POST['subject_id'];
         $sql_check = "SELECT * FROM subjects_taken WHERE Subect_id = '$subjectID' AND student_id = '$student_id'";
         $result_check = mysqli_query($conn, $sql_check);
         
-        if(mysqli_num_rows($result_check) > 0) {
+        if (mysqli_num_rows($result_check) > 0) {
             echo "<script>alert('Subject already added to the student');</script>";
         } else {
             $sql = "SELECT * FROM subjects WHERE subject_id = '$subjectID'";
             $result = mysqli_query($conn, $sql);
             
-            if($result && $row1r = mysqli_fetch_assoc($result)){
+            if ($result && $row1r = mysqli_fetch_assoc($result)) {
                 $name = $row1r['name'];
                 $teacher_id = $row1r['teacher_id'];
                 $form_doing = $row1r['form_doing'];
@@ -37,7 +42,7 @@ if ($result_student && mysqli_num_rows($result_student) > 0) {
                                VALUES ('$subjectID', '$student_id', '$name', '$teacher_id', '$form_doing', '$term_doing')";
                 $result_insert = mysqli_query($conn, $sql_insert);
                 
-                if($result_insert) {
+                if ($result_insert) {
                     echo "<script>alert('Subject added Successfully');</script>";
                 } else {
                     echo "<script>alert('Error adding subject.');</script>";
@@ -49,7 +54,7 @@ if ($result_student && mysqli_num_rows($result_student) > 0) {
     }
 
     // Display subjects
-    $queryr = "SELECT * FROM subjects WHERE form_doing = '{$row['form']}'";
+    $queryr = "SELECT * FROM subjects WHERE form_doing = 'Form $form_number'";
     $resultr = mysqli_query($conn, $queryr);
     if ($resultr && mysqli_num_rows($resultr) > 0) {
         echo "
@@ -110,7 +115,8 @@ if ($result_student && mysqli_num_rows($result_student) > 0) {
             background-color: grey;
             pointer-events: none;
         }
-        </style> ";
+        </style>";
+        
         echo "<center>
                 <h4 style='color:green;'>Click Register to add a subject</h4>
                 <div class='register'>               
@@ -136,7 +142,7 @@ if ($result_student && mysqli_num_rows($result_student) > 0) {
             $registeredState = '';
             $disabled = false;
             
-            if(mysqli_num_rows($result_check) > 0) {
+            if (mysqli_num_rows($result_check) > 0) {
                 $registeredState = "<p style='color:green;'>Already Registered</p>";
                 $disabled = true;
             } else {
@@ -154,19 +160,26 @@ if ($result_student && mysqli_num_rows($result_student) > 0) {
             echo '<td>';
             echo '<form method="post">';
             echo '<input type="hidden" name="subject_id" value="' . $row1r['subject_id'] . '">';
-            echo '<button type="submit" name="addSubject" class="' . ($disabled ? 'disabled' : '') . '" style="background-color: ' . ($disabled ? 'grey' : 'blue') . '; width:80px; height:30px; color:white;"' . ($disabled ? ' disabled' : '') . '>Register</button> ';
+            echo '<button type="submit" name="addSubject" class="' . ($disabled ? 'disabled' : '') . '" style="background-color: ' . ($disabled ? 'grey' : 'blue') . '; width:80px; height:30px; color:white;"' . ($disabled ? ' disabled' : '') . '>Register</button>';
             echo '</form>';
             echo '</td>';
             echo '</tr>';
         }
+        
         echo "</tbody>
               </table>
               </div>";
     } else {
-        $messageR = "<tr style='color:red;'><td colspan='6'>No subjects found.</td></tr>";
+        // No subjects found, display message
+        $messageR = "<p style='color:red; text-align:center;'>No subjects found.</p>";
     }
 } else {
     echo "<script>alert('Student not found');</script>";
+}
+
+// Display the message if set
+if (!empty($messageR)) {
+    echo $messageR;
 }
 
 mysqli_close($conn);

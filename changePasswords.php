@@ -26,7 +26,9 @@ if ($row = mysqli_fetch_assoc($result)) {
             // Hash the new password
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             // Update password in the database
-            $update_query = "UPDATE register SET password = '$hashedPassword' WHERE school_id = '$schoolID'";
+            $currentTime = date('Y-m-d H:i:s');
+            $update_query = "UPDATE register SET password = '$hashedPassword', date_password_changed ='$currentTime' WHERE school_id = '$schoolID'";
+
             if (mysqli_query($conn, $update_query)) {
                 echo '<script>
                 if(confirm("Password changed successfully. Do you want to log out and go to login page?")) {
@@ -35,6 +37,8 @@ if ($row = mysqli_fetch_assoc($result)) {
                     alert("You are still logged in.");
                 }
             </script>';
+      
+            
             } else {
                 $message = "Error updating password";
             }
@@ -123,7 +127,7 @@ if ($row = mysqli_fetch_assoc($result)) {
                 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                     <img style='border-radius:9px;' src="makuenilogo.png" alt="school logo"><br>
                     <label for="schoolID">Your school ID</label>
-                    <input readonly required type="text" value="<?php echo $schoolID ?>" name="schoolID" placeholder="Your school ID"><br>
+                    <input readonly required type="text" value="<?php echo $id ?>" name="schoolID" placeholder="Your school ID"><br>
                     <label for="name">Your name</label>
                     <input readonly required type="text" value="<?php echo $name ?>" name="name" placeholder="Your name"><br>
                     <label for="oldpassword">Enter your current password</label>
@@ -153,6 +157,18 @@ if ($row = mysqli_fetch_assoc($result)) {
                 <?php echo $message; ?> <!-- Display error message here -->
             </div>
         </div>
+    </center>
+    <center>
+        <div >
+        
+<?php
+      $getdate="SELECT * FROM register";
+      $resultdate=mysqli_query($conn,$getdate);
+if($r=mysqli_fetch_assoc($resultdate)){
+    echo "<p style='color:grey'>Password for user {$id} changed lastly at {$r['date_password_changed']}</p>";
+}
+?>
+            <div>
     </center>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script> <!-- Font Awesome JS -->
     <script>

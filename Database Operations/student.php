@@ -2,7 +2,11 @@
 include("connect.php");
 // ini_set('display_errors', 1);
 // error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
+session_start();
 $query_classroom = "SELECT * FROM classroom";
 $result_classroom = mysqli_query($conn, $query_classroom);
 
@@ -56,6 +60,8 @@ if(mysqli_num_rows($result) > 0) {
     if (mysqli_query($conn, $sql)) {
         // Update classroom capacity when a student is added
         // updateClassroomCapacity($classroom, 1);
+        
+     ;
         $query1 = "SELECT * FROM student WHERE indexnumber = '$index'";
         $result1 = mysqli_query($conn, $query1);
         if(mysqli_num_rows($result1) > 0) {
@@ -63,7 +69,10 @@ if(mysqli_num_rows($result) > 0) {
             $studentId=$row1['student_id'];
 
         }
-        
+        $_SESSION['student_idP']=$row1['student_id'];
+        if(isset($_SESSION['student_idP'])){
+        header('Location:parent_info.php');
+        }
         // Update dormitory capacity when a student is added
         // updateDormitoryCapacity($dormitory, 1);
         $message = "<p style='color:green;'>Student added successfully with a school ID of :{$studentId}</p>";
@@ -167,7 +176,8 @@ mysqli_close($conn);
     </style>
 </head>
 <body>
-    <a href="aboutUs.html">Back to School Page</a>
+    <a href="admin.php">Back to Admin Page</a>
+   
     <center>
         <div class="container">
             <div class="form">
@@ -206,7 +216,7 @@ while ($row_class = mysqli_fetch_assoc($result_classroom)) {
     echo "<option value='" . $row_class['classroom_id'] . "'>" . $row_class['classroom_id'] . "</option>";
 }
             ?>
-            ?>
+            
         </select><br>
         
         <!-- Dormitory Selection -->
@@ -219,7 +229,8 @@ while ($row_dormitory = mysqli_fetch_assoc($result_dormitory)) {
 ?>
         </select><br>
                     <label for="DOB">Enter the date of birth</label>
-                    <input required type="date" name="DOB" placeholder="Enter the student's DOB"><br>
+                    <input required type="date" name="DOB" placeholder="Enter the student's DOB" min='2001-01-01' max="2008-12-31"><br>
+
                     <button type="submit" name="submit">Add Student</button>
                     <button onclick="window.location.href='EditStudents.php'" id="view" type="button" name="View">View Students</button>
  </form>

@@ -21,13 +21,17 @@
                 <div class="dd-content">
                     <p style="color: green;">Scroll for options</p>
                     <a href="javascript:void(0)" onclick="loadContent('../teacher.php')">Manage teachers Information</a>
+                    <a href="javascript:void(0)" onclick="loadContent('../addClassteacher.php')">Add Class Teacher</a>
+
                 </div>
             </div>
             <div class="dd">
                 <button onclick="toggleStudent()" class="dd-btn">Manage Students</button>
                 <div class="dd-content">
                     <p style="color: green;">Scroll for options</p>
+                    <a href="javascript:void(0)" onclick="loadContent('viewparents.php')">View Parents</a>
                     <a href="javascript:void(0)" onclick="loadContent('student.php')">Manage Students</a>
+                    
                 </div>
             </div>
             <div class="dd">

@@ -66,11 +66,13 @@ color: green;
 }
 .content{
     color: black;
+    width:auto;
 }
 
 #links>a{
 text-decoration: none;
 display:block;
+width:auto;
 color: white;
 margin-left: 10%;
 padding-top:20px;

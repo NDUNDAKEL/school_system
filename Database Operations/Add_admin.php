@@ -72,12 +72,13 @@
     <div class="form">
     <form action="Post" method="">
         <img src="makuenilogo.png" alt="school logo"><br>
-        <label for="teacher_id">Enter your teacher ID</label>
+        <label for="teacher_id">Enter Admin ID</label>
         <input required type="number" name="teacher_id" placeholder="Enter your Teacher ID"><br>
         <label for="schoolID">Enter your password</label>
         <input id="pass" required type="password" name="schoolID" placeholder="Enter password" onclick="showPass()"><br>
         <button type="submit">Login</button>
     </form>
+    <div>
     </div>
 </center>
 <footer>

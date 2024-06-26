@@ -89,6 +89,7 @@ while($student_id_results=mysqli_fetch_assoc($result1)){
     </style>
 </head>
 <body>
+<a href="deleted_students.php"> <span style="color:Black height:auto; width:auto; background-color:green;">>Go Back <</span><i class="fas fa-sign-in-alt"></i></a> 
     <center>
 <h1 style="color:blue">Kilinyaa Secondary School</h1>
 

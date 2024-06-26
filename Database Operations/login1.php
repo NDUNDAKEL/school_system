@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 }
 
 // Display error message to the user
-echo $error_message;
+
 ?>
 
 
@@ -57,7 +57,7 @@ echo $error_message;
             margin: 6%;
             
             padding: 10px;
-            background-color: blue;
+            background-color: lightgreen;
             border-radius: 7px;
         }
         footer{
@@ -88,7 +88,7 @@ echo $error_message;
             margin:20px
         }
         label{
-            color: white;
+            color: black;
                 margin-top:20px; 
         }
         input{
@@ -142,7 +142,7 @@ echo $error_message;
     </style>
 </head>
 <body>
-<a href="aboutUs.html">Back to School Page</a>
+<a href="../aboutUs.php">Back to School Page</a>
 <center>
     <div class="container">
         <div class="form">
@@ -157,10 +157,10 @@ echo $error_message;
                             <i style="margin-top:100%;" id="eyeIcon1" class="fas fa-eye"></i>
                         </span>
                     </div>
-                    <div style="display:flex; justify-content:space-between;">
-                <button type="submit">Login</button>
-                <a id="reg" href="register.php">Register</a>
+                    <div >
+                <button style='width:50%; background-color:white; color:black' type="submit">Login</button><br>
     </div>
+    <a id="reg" href="register.php">Student Account Register</a>
                 <p onclick="forgotPassword()" style="color: red;">Forgot password?</p>
             </form>
         </div>
