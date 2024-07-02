@@ -3,7 +3,8 @@ include("connect.php");
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+//we  can write code to make the future much better and much sweeter for us and everyone using ICT.
+// ICT cannot be stopped. It is a wave that will take you with it.
 session_start();
 $message = ""; // Initialize message variable
 
