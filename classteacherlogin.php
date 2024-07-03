@@ -143,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                     <span class="toggle-icon" onclick="togglePasswordVisibility1()">
                         <i style="margin-top:100%;" id="eyeIcon1" class="fas fa-eye"></i>
                     </span>
-                </div>
+                </div> 
                 <div style="display:flex; justify-content:space-between;">
                     <br>
                     <button type="submit">Login</button><br>
