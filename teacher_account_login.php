@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             margin: 6%;
             
             padding: 10px;
-            background-color: grey;
+            background-color: blue;
             border-radius: 7px;
         }
         footer{
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             height: auto;
         }
         button{
-            background: blue;
+            background: orange;
             font-weight: bolder;
             color: white;
             border-radius: 5px;
@@ -127,9 +127,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     </style>
 </head>
 <body>
-<a href="aboutUs.html">Back to School Page</a>
+<a href="aboutUs.php">Back to School Page</a>
 <center>
     <div class="container">
+    <p style='color:blue'>Makueni Boys teacher login</p>
         <div class="form">
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                 <img style="border-radius:5px;" src="makuenilogo.png" alt="school logo"><br>
@@ -146,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                     <br>
                     <button type="submit">Login</button><br>
                 </div>
-                <p onclick="forgotPassword()" style="color: red;">Forgot password?</p>
+            
             </form>
         </div>
         <div style="color:red; margin-top:10px; font-weight:bolder;">

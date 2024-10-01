@@ -146,6 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 <a href="../aboutUs.php">Back to School Page</a>
 <center>
     <div class="container">
+        <p style='color:blue'>Parent Login</p>
         <div class="form">
             <form action="parent_login.php" method="post">
                 <img style="border-radius:5px;" src="makuenilogo.png" alt="school logo"><br>
@@ -162,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                 <button style='width:50%; background-color:white; color:black' type="submit">Login</button><br>
     </div>
     <a id="reg" href="register.php">Student Account Register</a>
-                <p onclick="forgotPassword()" style="color: red;">Forgot password?</p>
+            
             </form>
         </div>
          <div style="color:red; margin-top:10px; font-weight:bolder;">

@@ -1,19 +1,19 @@
 <?php
-include("connect.php");
+include('Database Operations/connect.php');
 
 $filter = $_POST['filter'] ?? 'All';
 $search = $_POST['search'] ?? '';
 $term = filter_input(INPUT_POST, 'term', FILTER_SANITIZE_SPECIAL_CHARS);
 
-if (isset($_GET['editStudent'])) {
+if (isset($_GET['editTeacher'])) {
     session_start();
-    $_SESSION['id_to_edit'] = $_GET['editStudent'];
-    header('Location:EditstudentInfo.php');
+    $_SESSION['teacher_id_to_edit'] = $_GET['editTeacher'];
+    header('Location:editTeacher.php');
     exit();
-} elseif (isset($_GET['deleteStudent'])) {
+} elseif (isset($_GET['deleteTeacher'])) {
     session_start();
-    $_SESSION['id_to_delete'] = $_GET['deleteStudent'];
-    header('Location: deleted_students.php');
+    $_SESSION['teacher_id_to_delete'] = $_GET['deleteTeacher'];
+    header('Location: deleteTeacher.php');
 }
 
 // Fetch student data from the database
@@ -23,15 +23,15 @@ if(isset($_POST['search'])){
     
     // Handle the "All" case separately
     if ($filter === 'All') {
-        $query9 = "SELECT * FROM student";
+        $query9 = "SELECT * FROM teacher";
     } elseif ($filter && $term) {
         // Construct the query normally for other filter options
-        $query9 = "SELECT * FROM student WHERE $filter = '$term'";
+        $query9 = "SELECT * FROM teacher WHERE $filter = '$term'";
     }
     $result9 = mysqli_query($conn, $query9);
 } else {
     // If search not performed, fetch all students
-    $query9 = "SELECT * FROM student";
+    $query9 = "SELECT * FROM teacher";
     $result9 = mysqli_query($conn, $query9);
 }
 ?>
@@ -81,7 +81,7 @@ if(isset($_POST['search'])){
         }
 
         #add {
-            background: blue;
+            background: green;
             margin-right: 10%;
             border: none;
             border-radius: 5%;
@@ -98,17 +98,14 @@ if(isset($_POST['search'])){
     </style>
 </head>
 <body>
-    <h1 style='color:red'>Student Management</h1>
-    <form method="post" action="EditStudents.php">
+    <h1 style='color:red'>Teacher Management</h1>
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
         <p style="color: blue;">Based on:</p>
         <select class="filter-select" name="filter">
             <option value="All">All</option>
-            <option value="student_id">Student ID</option>
-            <option value="email">Email ID</option>
+            <option value="teacher_id">Teacher ID</option>
             <option value="name">Name</option>
-            <option value="indexnumber">Index Number</option>
-            <option value="classroom_id">Classroom Id</option>
-            <option value="form">Form</option>
+            <option value="national_id">National ID</option>
         </select>
         <input class="search-input" type="text" name="term" placeholder="Enter search term">
         <button class="search-btn" type="submit" name="search">Search</button>
@@ -116,17 +113,12 @@ if(isset($_POST['search'])){
     <table>
         <thead>
             <tr>
-                <th>Student ID</th>
-                <th>Student Name</th>
-                <th>Student Email</th>
-                <th>Gender</th>
-                <th>KCPE Index Number</th>
-                <th>Classroom ID</th>
-                <th>Form</th>
-                <th>Date Admitted</th>
-                <th>DOB</th>
-                <th>Dormitory</th>
-                <th>Student Token</th>
+                <th>Teacher ID</th>
+                <th>Teacher Name</th>
+                <th>National ID</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Token</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -135,30 +127,25 @@ if(isset($_POST['search'])){
             if (mysqli_num_rows($result9) > 0) {
                 while ($row9 = mysqli_fetch_assoc($result9)) {
                     echo "<tr>";
-                    echo "<td style='color:orange;'>" . $row9['student_id'] . "</td>";
+                    echo "<td style='color:orange;'>" . $row9['teacher_id'] . "</td>";
                     echo "<td>" . $row9['name'] . "</td>";
-                    echo "<td style='color:blue;'>" . $row9['email'] . "</td>";
-                    echo "<td style='color:green;'>" . $row9['gender'] . "</td>";
-                    echo "<td style='color:black;'>" . $row9['indexnumber'] . "</td>";
-                    echo "<td style='color:orange;'>" . $row9['classroom_id'] . "</td>";
-                    echo "<td style='color:red;'>" . $row9['form'] . "</td>";
-                    echo "<td style='color:grey;'>" . $row9['date_admitted'] . "</td>";
-                    echo "<td style='color:blue;'>" . $row9['DOB'] . "</td>";
-                    echo "<td style='color:black;'>" . $row9['dormitory'] . "</td>";
-                    echo "<td style='color:green;'>" . $row9['token'] . "</td>";
+                    echo "<td style='color:green;'>" . $row9['national_id'] . "</td>";
+                    echo "<td style='color:black;'>" . $row9['email'] . "</td>";
+                    echo "<td style='color:orange;'>" . $row9['phone_number'] . "</td>";
+                    echo "<td style='color:red;'>" . $row9['token'] . "</td>";
                     echo "<td>";
-                    echo "<a style='background-color:yellow; color:black;' href='?editStudent=" . $row9['student_id'] . "'>Edit</a> | ";
-                    echo "<a style='background-color:red; color:white;' href='?deleteStudent=" . $row9['student_id'] . "' onclick='return confirm(\"Are you sure you want to delete this student?\")'>Delete</a>";
+                    echo "<a style='background-color:yellow; color:black;' href='?editTeacher=" . $row9['teacher_id'] . "'>Edit</a> | ";
+                    echo "<a style='background-color:red; color:white;' href='?deleteTeacher=" . $row9['teacher_id'] . "' onclick='return confirm(\"Are you sure you want to delete this student?\")'>Delete</a>";
                     echo "</td>";
                     echo "</tr>";
                 }
             } else {
-                echo "<tr style='color:red;'><td colspan='12'>No students found.</td></tr>";
+                echo "<tr style='color:red;'><td colspan='12'>No Teachers found.</td></tr>";
             }
             ?>
         </tbody>
     </table>
-    <button id="add" onclick="window.location.href='student.php'">Add New Student</button>
+    <button id="add" onclick="window.location.href='teacher.php'">Add New Teacher</button>
 
 </body>
 </html>

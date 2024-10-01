@@ -212,7 +212,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
-    <a href="teacher_subjects_grading.php">Back to School Page</a>
+    <a style='background:none; text-decoration:underline; color:black;' href="teacher_subjects_grading.php">Back</a>
     <center>
         <div class="container">
             <div class="form">

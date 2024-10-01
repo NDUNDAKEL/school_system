@@ -161,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                 <button style='width:50%; background-color:white; color:black' type="submit">Login</button><br>
     </div>
     <a id="reg" href="register.php">Student Account Register</a>
-                <p onclick="forgotPassword()" style="color: red;">Forgot password?</p>
+               
             </form>
         </div>
          <div style="color:red; margin-top:10px; font-weight:bolder;">
@@ -169,6 +169,11 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                     <p><?php echo $error_message; ?></p>
                 <?php } ?>
             </div>
+            <a style='background-color:orange' href='../classteacherlogin.php'>Or Login as class Teacher</a>
+            <a href='../teacher_account_login.php'>Or Login as Teacher</a>
+            <a style='background-color:red' href='adminLogin.php'>Or Login as Admin</a>
+            <a style='background-color:black' href='parent_login.php'>Or Login as Parent</a>
+
     </div>
 </center>
 <footer>

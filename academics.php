@@ -627,18 +627,19 @@ include "changePasswords.php";
         $getresults = mysqli_query($conn, $getmean);
         
         if ($getresults && $rowclassmean = mysqli_fetch_assoc($getresults)) {
-            echo "<p style='color:green'> The class mean was <span style='color:blue'> {$rowclassmean['mean_grade']} </span> of {$rowclassmean['mean_marks']}</p>";
-            echo " <p style='color:orange'>Class teacher comment on classroom results </p>";
+            echo "<p style='color:green'> The class mean was <span style='color:blue'>{$rowclassmean['mean_grade']}</span> of {$rowclassmean['mean_marks']}</p>";
+            echo "<div style='border:1px solid black;'><h1 style='color:orange'>Class teacher comment on classroom results</h1>";
         }
         
         $getclassmean = "SELECT * FROM classroom_mean WHERE classroom_id ='$class'";
         $resultclassmean = mysqli_query($conn, $getclassmean);
         
         if ($resultclassmean && $resultclass = mysqli_fetch_assoc($resultclassmean)) {
-            echo "<h4 style='height:auto; width:auto; background-color:blue;color:white;'>{$resultclass['teacher_comments']}<h4>";
+            echo "<p style='height:auto; margin-top: 1px; margin-left:0px; width:auto;color:black;'>{$resultclass['teacher_comments']}</p></div>";
         } else {
-            echo "No results found for classroom mean.";
+            echo "No results found for classroom mean.</div>";
         }
+        
         ?>
     </div>
 </div>

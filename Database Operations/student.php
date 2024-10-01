@@ -177,9 +177,12 @@ mysqli_close($conn);
 </head>
 <body>
     <a href="admin.php">Back to Admin Page</a>
-   
+    <center>
+    <p style='color:orange'>Makueni Boys High School Student Registration Page<p>
+    </center>
     <center>
         <div class="container">
+       
             <div class="form">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                     <img src="../makuenilogo.png" style="border-radius:9px;" alt="school logo"><br>
@@ -242,12 +245,6 @@ while ($row_dormitory = mysqli_fetch_assoc($result_dormitory)) {
             </div>
            
     </center>
-<footer>
-    <center>
-        <h2 style="color:green;"><span>Like a tree knowledge grows</span></h2>
-        <p>Powered by School Space &copy 2024</p>
-    </center>
-</footer>
 </div>
 <!-- <script>
     // JavaScript to populate classroom dropdown based on form category selection

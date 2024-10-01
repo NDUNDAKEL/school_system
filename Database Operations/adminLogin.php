@@ -1,6 +1,8 @@
 <?php
 include('connect.php');
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $error_message = "";
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     $teacher_id = filter_input(INPUT_POST, 'teacher_id', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -21,10 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         if (password_verify($password, $row['password'])) {
             // Password is correct, redirect to the user page needed.
             session_start();
-            $_SESSION['teacher_id'] = $teacher_id;
+            $_SESSION['admin_id'] = $teacher_id;
             header("Location: admin.php");
-            session_start();
-            $getID=$_SESSION[]
+         
             exit();
         } else {
             // Password is incorrect
@@ -55,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             margin: 6%;
             
             padding: 10px;
-            background-color: grey;
+            background-color: red;
             border-radius: 7px;
         }
         footer{
@@ -129,9 +130,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     </style>
 </head>
 <body>
-<a href="aboutUs.html">Back to School Page</a>
+<a href="../aboutUs.php">Back to School Page</a>
 <center>
     <div class="container">
+        <p style='color:blue'>Makueni Boys Admin login Page</p>
         <div class="form">
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                 <img style="border-radius:5px;" src="makuenilogo.png" alt="school logo"><br>
@@ -148,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                     <br>
                     <button type="submit">Login</button><br>
                 </div>
-                <p onclick="forgotPassword()" style="color: red;">Forgot password?</p>
+             
             </form>
         </div>
         <div style="color:red; margin-top:10px; font-weight:bolder;">

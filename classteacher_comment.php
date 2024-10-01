@@ -48,6 +48,8 @@ if (isset($_POST['logout'])) {
 
 $querystudentmean= "SELECT * FROM student_mean WHERE classroom_id = '$class'";
                         $resultstudentmean = mysqli_query($conn, $querystudentmean);
+
+            
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -195,11 +197,12 @@ $querystudentmean= "SELECT * FROM student_mean WHERE classroom_id = '$class'";
                         <tr>
                             <th>Student ID</th>
                             <th>Student Name</th>
-                            <th>Classroom ID/th>
+                            <th>Classroom ID</th>
                             <th> Form</th>
                             <th>Term</th>
                             <th>mean marks</th>
                             <th>mean grade</th>
+                            <th>Student Comment</th>
                             <th>Class teacher Comment</th>
                             <th style="width: 70px">Action</th>
                         </tr>
@@ -208,6 +211,30 @@ $querystudentmean= "SELECT * FROM student_mean WHERE classroom_id = '$class'";
                         <?php
                         if(!isset($_POST['search' && empty($term)])){
                         while ($row9 = mysqli_fetch_assoc($resultstudentmean)) {
+                            $comment_id=$row9['student_id'];
+                            $getcomment="SELECT * FROM student_coments WHERE student_id ='$comment_id'";
+                            $resultcomment=mysqli_query($conn,$getcomment);
+                            if($commentstudent = mysqli_fetch_assoc($resultcomment)){
+                                $commentshow=$commentstudent['comment'];
+                                echo '<tr>';
+                                echo '<td style="color:green;">' . $row9['student_id'] . '</td>';
+                                echo '<td style="color:green;">'.$row9['student_name']. '</td>';
+                                echo '<td style="color:green;">' . $row9['classroom_id'] . '</td>';
+                                echo '<td style="color:grey;">' . $row9['form'] . '</td>';
+                                echo '<td style="color:blue;">' . $row9['term'] . '</td>';
+                                echo '<td style="color:red;">' . $row9['student_mean'] . '</td>';
+                                echo '<td style="color:green;">' . $row9['mean_grade'] . '</td>';
+                                echo '<td style="color:grey;">' . $commentshow . '</td>';
+                                echo '<td>';
+                                echo "<form method='POST' action='classteacher_comment.php'>
+                                    <textarea rows='5' cols='50' name='commentstudent' placeholder='Write a comment on class performance'>" . $row9['teacher_comment'] . "</textarea>
+                                </td>
+                                <td>
+                                    <button style='background-color:green; color:white' type='submit' name='studentcomment'>Comment</button>
+                                </form>";
+                                echo '</td>';
+                                echo '</tr>';
+                            }else{
                             echo '<tr>';
                             echo '<td style="color:green;">' . $row9['student_id'] . '</td>';
                             echo '<td style="color:green;">'.$row9['student_name']. '</td>';
@@ -216,6 +243,7 @@ $querystudentmean= "SELECT * FROM student_mean WHERE classroom_id = '$class'";
                             echo '<td style="color:blue;">' . $row9['term'] . '</td>';
                             echo '<td style="color:red;">' . $row9['student_mean'] . '</td>';
                             echo '<td style="color:green;">' . $row9['mean_grade'] . '</td>';
+                            echo '<td style="color:grey;">No comments yet.</td>';
                             echo '<td>';
                             echo "<form method='POST' action='classteacher_comment.php'>
                                 <textarea rows='5' cols='50' name='commentstudent' placeholder='Write a comment on class performance'>" . $row9['teacher_comment'] . "</textarea>
@@ -225,6 +253,7 @@ $querystudentmean= "SELECT * FROM student_mean WHERE classroom_id = '$class'";
                             </form>";
                             echo '</td>';
                             echo '</tr>';
+                            }
                         
                             if(isset($_POST['studentcomment'])){
                                 $commentstudent = $_POST['commentstudent'];
@@ -239,6 +268,16 @@ $querystudentmean= "SELECT * FROM student_mean WHERE classroom_id = '$class'";
                                 } else {
                                     echo "<script>alert('Please enter a comment')</script>";
                                 }
+                            }
+                            if($row9['student_mean']<50){
+                                echo "<h2>Students Below Average</h2>";
+                                echo "<p style=color:red>Student {$row9['student_id']} has performed below average</p>";
+                            }elseif($row9['student_mean']>50 &&  $row9['student_mean']<=69.9){
+                                echo "<h2>Students Good Performance</h2>";
+                                echo "<p style=color:green>Student {$row9['student_id']} has performed above 50 <60</p>";
+                            }else{
+                                echo "<h2>Students with A</h2>";
+                                echo "<p style=color:green>Student {$row9['student_id']} has performed very well</p>";
                             }
                         }
                     }else{
@@ -310,13 +349,13 @@ while ($rowclassmean = mysqli_fetch_assoc($resultclassmean)) {
     $teacherComment = $rowclassmean['teacher_comments'] !== null ? $rowclassmean['teacher_comments'] : 'Null';
     echo "
     <tr>
-        <td>{$rowclassmean['classroom_id']}</td>
-        <td>{$rowclassmean['class_capacity']}</td>
-        <td>{$rowclassmean['class_teacher']}</td>
-        <td>{$rowclassmean['form']}</td>
-        <td>{$rowclassmean['term']}</td>
-        <td>{$rowclassmean['mean_marks']}</td>
-        <td>{$rowclassmean['mean_grade']}</td>
+        <td style='color:orange'>{$rowclassmean['classroom_id']}</td>
+        <td style='color:grey'>{$rowclassmean['class_capacity']}</td>
+        <td style='color:green'>{$rowclassmean['class_teacher']}</td>
+        <td style='color:grey'>{$rowclassmean['form']}</td>
+        <td style='color:grey'>{$rowclassmean['term']}</td>
+        <td style='color:red'>{$rowclassmean['mean_marks']}</td>
+        <td style='color:red'>{$rowclassmean['mean_grade']}</td>
         <td>
             <form method='POST' action='classteacher_comment.php'>
             <textarea rows='5' cols='50' name='commentperformance' placeholder='Write a comment on class performance'>" . $rowclassmean['teacher_comments'] . "</textarea>
@@ -343,6 +382,11 @@ while ($rowclassmean = mysqli_fetch_assoc($resultclassmean)) {
         } else {
             echo "<script>alert('Please enter a comment')</script>";
         }
+    }
+    if($rowclassmean['mean_marks']<50){
+        echo "<p style=color:red>The class has performed below average</p>";
+    }else{
+        echo "<p style=color:green>The class has performed above average</p>";
     }
 }
 echo "
@@ -376,6 +420,7 @@ echo "
 <tbody>";
 
 while ($row = mysqli_fetch_assoc($resultsubject)) {
+
     echo "
     <tr>
         <td style='color:green'>{$row['subject_code']}</td>
@@ -393,10 +438,13 @@ while ($row = mysqli_fetch_assoc($resultsubject)) {
                 <input type='hidden' name='classroom_id' value='{$row['classroom_id']}'>
         </td>
         <td>
-                <button type='submit' name='submit_comment'>Submit</button>
+                <button style='background:blue; baorder:none; border-radius:2px; color:white;' type='submit' name='submit_comment'>Submit</button>
             </form>
         </td>
     </tr>";
+    if($row['marks']<50){
+        echo "<p style=color:red>Subject {$row['subject_code']} has performed below average<p>";
+    }
 }
 
 echo "

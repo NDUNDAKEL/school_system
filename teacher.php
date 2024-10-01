@@ -66,9 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             height: auto;
         }
         button{
-            background: yellow;
+       
             font-weight: bolder;
-            color: black;
             border-radius: 5px;
             width:100px;
             height: 30px;
@@ -76,10 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             cursor: pointer;
             margin:20px;
         }
-        button:hover{
-            background-color:blue;
-            color:white;
-        }
+      
         label{
             color: white;
         }
@@ -138,7 +134,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input required type="email" name="email" placeholder="Teacher's email address"><br>
                     <label for="phone">Enter teacher phone number</label>
                     <input required type="tel" name="phone" placeholder="Teacher's tel number"><br>
-                    <button type="submit">Add Teacher</button>
+                    <button style="color:white; background-color:blue;" type="submit">Add Teacher</button>
+                    <button style="color:white; background-color:black;" onclick="window.location.href='showTeachers.php'" type="button">View Teachers</button>
                 </form>
             </div>
             <div style="color:red; margin-top:10px; font-weight:bolder;">

@@ -46,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "UPDATE student SET email='$email1', name='$name1', gender='$gender1', indexnumber='$indexnumber1', classroom_id='$classroom1', dormitory='$dormitory1',form='$form_category1', DOB='$DOB1' WHERE student_id ='$student_id'";
 
     if (mysqli_query($conn, $sql)) {
-        $message = "<p style='color:green;'>Student edited successfully</p>";
+        $message = "<script>alert('Student edited successfully')</script>";
         $_SESSION = array();
         session_destroy();
         header("Location:EditStudents.php");
